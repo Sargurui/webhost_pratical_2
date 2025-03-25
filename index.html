@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    h2, h3 {
+      text-align: center;
+      color: #444;
+    }
+    ul {
+      list-style-type: square;
+      padding: 0 20px;
+      margin-left:45%;
+    }
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f8f8f8;
+      cursor: pointer;
+    }
+    form {
+      width: 50%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    form input, form button {
+      width: calc(100% - 20px);
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <h2>Available Sports</h2>
+  <ul>
+    <li>Cricket</li>
+    <li>Basketball</li>
+    <li>Tennis</li>
+  </ul>
+  
+  <h3>Add Sport</h3>
+  <form id="sport-form" onsubmit="return addSport(event)">
+    <input id="sport" type="text" placeholder="Sport" required>
+    <input id="type" type="text" placeholder="Team Name" required>
+    <input id="players" type="number" placeholder="Players" required>
+    <button type="submit">Add</button>
+  </form>
+  
+  <h3>Sports Table</h3>
+  <table id="sports-table">
+    <thead>
+      <tr>
+        <th>Sport</th>
+        <th>Team Name</th>
+        <th>Players</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows will be added dynamically -->
+    </tbody>
+  </table>
+  
+  <script>
+    function addSport(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      const sport = document.getElementById("sport").value;
+      const type = document.getElementById("type").value;
+      const players = document.getElementById("players").value;
+      
+      if (sport && type && players) {
+        const tableBody = document.getElementById("sports-table").querySelector("tbody");
+        const newRow = tableBody.insertRow();
+        newRow.innerHTML = `<td>${sport}</td><td>${type}</td><td>${players}</td>`;
+        
+        document.getElementById("sport-form").reset(); // Reset the form
+      } else {
+        alert("Fill all fields!");
+      }
+    }
+  </script>
+</body>
+</html>
